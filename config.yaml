@@ -1,0 +1,90 @@
+#yaml
+
+images:
+  - titre: la leçon de piano
+    urls:
+      - img1.jpg
+      - img3.jpg
+    annee: 2019
+    commentaire: |
+      long texte
+      avec de retours chariot
+      et des lignes vides
+    tags: Design
+  - titre: la mère et le chien
+    urls:
+      - img2.jpg
+      - img4.jpg
+      - img3.jpg
+    annee: 2019
+    tags: Dessin
+    commentaire: |
+      chaine de texte
+      avec retour à la ligne
+      et encore un autre pour etre sûr
+      que ça passe correctement.
+  - titre: le cheval fou d'amour
+    url: img3.jpg
+    tags: lematin
+    commentaire: la belle grosse images
+      qui fout la trouille
+      même la nuit.
+    annee: 2020
+  - titre: le canapé extensible
+    urls:
+      - img4.jpg
+      - img3.jpg
+    annee: 2019
+    commentaire: |
+      long texte
+      avec de retours chariot
+      et des lignes vides
+    tags: UI,UX,Design
+  - titre: la main droite à l'envers
+    urls:
+      - img5.jpg
+      - img3.jpg
+      - img1.jpg
+    annee: 2019
+    tags: CotelleteDePorc
+    commentaire: |
+      chaine de texte
+      avec retour à la ligne
+      et encore un autre pour etre sûr
+      que ça passe correctement.
+  - titre: le carpaud amoureux
+    url: img6.jpg
+    tags: sucreàlail
+    commentaire: la belle grosse images
+      qui fout la trouille
+      même la nuit.
+    annee: 2020
+  - titre: le chien pale
+    urls:
+      - img2.jpg
+      - img3.jpg
+    annee: 2019
+    commentaire: |
+      long texte
+      avec de retours chariot
+      et des lignes vides
+    tags: UI
+  - titre: la gamelle élastique
+    urls:
+      - img3.jpg
+      - img5.jpg
+      - img1.jpg
+    annee: 2019
+    tags: UI,Design
+    commentaire: |
+      chaine de texte
+      avec retour à la ligne
+      et encore un autre pour etre sûr
+      que ça passe correctement.
+  - titre: le cheval laborieux
+    url: img6.jpg
+    tags: Saucisson
+    commentaire: la belle grosse images
+      qui fout la trouille
+      même la nuit.
+    annee: 2020
