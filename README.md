@@ -46,7 +46,7 @@ images:
     # la première ligne de commentaire ()+ |) permet de préciser que la suite contient des retours à la ligne qu'il faut conserver
     commentaire: |
       supporte les retours à la ligne
-    tags: tag1,tag2 #ajouten les tags qui permettent de classer les projets
+    tags: tag1,tag2 #ajoutez des tags qui permettent de montrer/cacher les projets, avec une [virgule] comme séparateur
   [...]
   - titre: 
 ```
