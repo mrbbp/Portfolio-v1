@@ -5,17 +5,16 @@ Un simple portfolio, html + css + js + fichier yaml de config.
 Design frugal (pas de base de donnée MySQL), un simple fichier yaml pour structurer le contenu.
 Il suffit de compléter le fichier `config.yaml` pour ajouter des contenus (et d'ajouter les images sur le serveur).
 
-Pour le moment, le script attend une ou des images, créée des `<article><figure><img></figure><figcaption></figcaption></article>` à partir de `urls` ou `url`
-
 C'est un première ébauche pour un portfolio pour les étudiants de DNMADe Design graphique en mouvement du lycée Bréquigny de Rennes.
 
-Une barre contenant tous les tags (contenus dans config.yaml) est générée et permet de montrer/cacher certains projets (simple disparition dans la colonne)
+- Pour le moment, le script attend une ou des images, créée des `<article><figure><img></figure><figcaption></figcaption></article>` à partir de `urls` ou `url` (ou `<video>`
+- Une barre contenant tous les tags (contenus dans `config.yaml`) est générée et permet de montrer/cacher certains projets (simple disparition dans la colonne de droite)
 
-Lorsque qu'un projet est cliqué, une "light-box" permet de faire défiler les images du projet en fondu enchainé et de retrounber à la sémlection des projets.
+- Lorsque qu'un projet est cliqué, une "light-box" permet de faire défiler les images du projet en fondu enchainé et de retourner à la sélection des projets.
 
-La première partie du fichier css/style.css contient qlq variables css pour madifier les couleurs du texte et l'écart entre les images (gouttière).
+- La première partie du fichier css/style.css contient qlq variables css pour madifier les couleurs du texte et l'écart entre les images (gouttière).
 
-Le script utilise le parser js-yaml https://github.com/nodeca/js-yaml pour structurer les infos.
+- Le script utilise le parser js-yaml https://github.com/nodeca/js-yaml pour structurer les infos.
 
 Le design est un peu grossier, il utilise par défaut la police *Source Sans Variable*, dessinée par Adobe® system.
 
