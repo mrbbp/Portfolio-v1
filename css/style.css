@@ -1,21 +1,35 @@
 :root {
   /* variables pour le design */
-  --gap-images: 1rem;/* 1px */
+  --gap-images: 1rem;
+  /* --gap-images:  1px */
   --marge-images: calc(var(--gap-images) * 2);
-  --couleur-gap: transparent;/*var(--couleur-fond)*/
+  --couleur-gap: transparent;
+  /* --couleur-gap: var(--couleur-fond) */
   /* couleur des boutons */
-  --couleur-fond: rgba(0,0,0,.6);
+  --couleur-fond: #444;
   --couleur-fond-hover: rgba(0,0,0,1);
-  --couleur-text-hover: #eee;
+  --couleur-text-hover: #ddd;
   /* couleur du texte à gauche */
   --couleur-textes: #444;
+  --images: contain;
 }
+/* Les typos utilisées que vous pouvez modifier */
 @font-face {
   font-family: SourceSansVariable;
   font-weight: 100 800;
   src: url(../fonts/SourceSansVariable-Roman.woff2) format("woff2");
 }
+@font-face {
+  font-family: laBlack;
+  font-weight: 800;
+  src: url(../fonts/SourceSansVariable-Roman.woff2) format("woff2");
+}
 
+@font-face {
+  font-family: laLight;
+  font-weight: 100;
+  src: url(../fonts/SourceSansVariable-Roman.woff2) format("woff2");
+}
 * { margin:0; padding: 0; }
 html { font-size: calc(100vw / 90); /* 1rem = 1em = 16px */}
 body {
@@ -23,16 +37,19 @@ body {
   height: 100vh;
   align-items: end;
   /* deco */
-  background-color: #efefef;
+  background-color: var(--couleur-fond-app);
   color: var(--couleur-textes);
   font-family: SourceSansVariable;
   font-weight: 100;
   overflow: hidden;
+  transition: all 600ms ease-in-out;
+  transition-property: background-color, color
 }
+/* STYLES DE LA HOME - PAVÉ TEXTE */
 h1 {
   text-align: right;
-  font-family: SourceSansVariable;
-  line-height: 1;
+  font-family: laBlack, SourceSansVariable;
+  line-height: 8rem;
   font-weight: 900;
   font-size: 8rem;
   /* text-transform: uppercase; */
@@ -43,7 +60,7 @@ h1 span {
   font-variant: small-caps;
 }
 .texte h2 {
-  font-family: SourceSansVariable;
+  font-family: laLight, SourceSansVariable;
   text-align: right;
   font-weight: 300;
   font-size: 4em;
@@ -54,30 +71,34 @@ h1 span {
   margin-bottom: 1rem;
 }
 .texte h3 {
-  font-family: SourceSansVariable;
+  font-family: laLight, SourceSansVariable;
   text-align: right;
   font-weight: 300;
   font-size: 3em;
-  line-height: 1;
+  line-height: 3.2rem;
   color: #999;
   color:var(--couleur-textes);
   opacity:.6;
 }
 .texte h4 {
   display: inline-block;
-  font-family: SourceSansVariable;
+  font-family: laLight, SourceSansVariable;
   text-align: right;
   font-weight: 100;
   font-size: 4rem;
-  line-height: 1;
+  /* line-height: 1; */
+  line-height: 4.5rem;
   /* color:var(--couleur-textes); */
   /* opacity:.6; */
 }
 .texte h4 a {
-  background-color: magenta;
+  background-color: var(--coul-lienH4);
+  padding-left: .5rem;
+  padding-right: .5rem;
   color: white;
   text-decoration: none;
 }
+/* fin des styles de la home*/
 #berceau {
   display: flex;
   flex-direction: row;
@@ -86,7 +107,8 @@ h1 span {
   width: 100vw;
   /* margin-top: 2rem; */
   transition: all 600ms ease-in-out 300ms;
-  /* margin-left: -50vw; */
+  /* décale d'un 1px en haut (pb  bordure tags) */
+  margin-top: -1px;
 }
 .images {
   background-color: var(--couleur-gap);
@@ -133,6 +155,7 @@ h1 span {
 }
 .projet article.cache {
   opacity: 0;
+  visibility: hidden;
 }
 .projet nav div {
   display: inline-block;
@@ -158,7 +181,7 @@ h1 span {
   top: 46vh;
   width: 4rem;
   height: 4rem;
-  line-height: 4rem;
+  line-height: 5.4rem;
   padding: 0;
   text-align: center;
 }
@@ -182,16 +205,23 @@ h1 span {
 .images article:last-of-type {
   padding-bottom: 1rem;
 }
+.images figure {
+  background-color: transparent;
+}
 article figure {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #ddd;
+  background: var(--fond-medias);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .images figure figcaption {
   transition: all 250ms ease-out;
-  transition-delay: 100ms;
+  /* transition-property: height, color, background-color; */
+  /* transition-delay: 100ms; */
 }
 .images figure figcaption:before {
   content: "•••";
@@ -214,18 +244,32 @@ article figure {
   background-color: transparent;
   width: calc(100% - .5rem);
   display: block;
+  /* pour le positionnement de la première ligne */
   height: 50%;
   margin-bottom: calc( -50% + calc(2.6rem - var(--gap-images)));
   padding-left: .5rem;
-
+  /* transition: margin-bottom 1000ms ease-in-out; */
+  /* transition-delay: 500ms; */
 }
 .images figure:hover figcaption {
   margin-bottom: 0;
-  background-color: var(--couleur-fond);
+  background-color: var(--couleur-fond-fig);
   color: var(--couleur-text-hover);
+  /* permet d'avoir la cartouche à la hauteur du texte */
+  /* height: auto; */
+  max-height: 50%;
 }
 .images figcaption p {
   line-height: 1.2rem;
+  height: 12vh;
+  /* background-color: yellow; */
+  /* white-space: nowrap; */
+  overflow: scroll;
+  /* text-overflow: ellipsis; */
+  padding-bottom: 6px;
+  margin-bottom: .6rem;
+  margin-right: .6rem;
+  /* retouche*/
 }
 .images figure:hover {
   cursor: crosshair;
@@ -249,7 +293,20 @@ article figure {
 }
 .contain {
   object-fit: contain;
+  /* var(--images); */
 }
+.vcontain {
+  object-fit: contain;
+  height: 100% !important;
+  width: auto !important;
+}
+.vcover {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+  height: auto;
+}
+
 nav.tag {
   position: relative;
   box-sizing: border-box;
@@ -262,7 +319,7 @@ nav.tag {
   height: 2rem;
   line-height: 2rem;
   width: 100vw;
-  border-bottom: 1px solid var(--couleur-fond);
+  border-bottom: 1px solid var(--couleur-trait);
   transition: margin-top 300ms ease-in-out;
 }
 
@@ -272,18 +329,24 @@ nav.tag {
      }
 }
 nav a{
-  color: var(--couleur-fond);
+  color: var(--couleur-tag);
   background-color: var(--couleur-text-hover);
   padding: 0 1rem;
   /* border-radius: 1rem; */
   /* margin: 0 .25rem; */
   text-decoration: none;
-  border: 1px solid var(--couleur-fond);
-  border-bottom: 0;
-  border-left: 0;
+  border-right: 1px solid var(--couleur-structure);
+  /* border-bottom: 0;
+  border-left: 0; */
+  text-transform: uppercase;
 }
+nav a:last-child {
+  font-style: italic;
+  font-weight: bolder;
+}
+
 .OFF {
-  background-color: var(--couleur-fond);
+  background-color: var(--couleur-tag);
   color: var(--couleur-text-hover);
   text-decoration: line-through;
 }
@@ -301,7 +364,16 @@ nav a{
 }
 .projet img {
   width: 100%;
-  height: auto;
+  /* height: auto; */
+  height: 100%;
+}
+.projet video {
+  /* object-fit: cover; */
+  /* height: auto; */
+  object-position: center;
+}
+.projet video:hover {
+  cursor: pointer;
 }
 .projet aside {
   position: absolute;
@@ -312,7 +384,7 @@ nav a{
 }
 .projet aside span  {
   /* display: inline-block; */
-  background-color: var(--couleur-fond);
+  background-color: var(--couleur-fond-fig);
   color: var(--couleur-text-hover);
   padding: 0 .5rem;
 }
