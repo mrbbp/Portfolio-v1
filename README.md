@@ -12,7 +12,7 @@ C'est un première ébauche pour un portfolio pour les étudiants de DNMADe Desi
 
 - Lorsque qu'un projet est cliqué, une "light-box" permet de faire défiler les images du projet en fondu enchainé et de retourner à la sélection des projets.
 
-- La première partie du fichier css/style.css contient qlq variables css pour madifier les couleurs du texte et l'écart entre les images (gouttière).
+- La première partie du fichier css/style.css contient qlq variables css pour modifier les couleurs du texte et l'écart entre les images (gouttière).
 
 - Le script utilise le parser js-yaml https://github.com/nodeca/js-yaml pour structurer les infos.
 
@@ -25,7 +25,7 @@ Le design est un peu grossier, il utilise par défaut la police *Source Sans Var
   - ajout d'une gestion de l'`object-fit` sur les medias (images et vidéos) - calage sur la largeur ou la hauteur du média (1 object-fit / projet)
   - si les légendes (home) dépassent, il n'y a plus d'acenceur pour scroller `overflow:scroll` ... **bug sous win: montre des acenceurs vides**
   - gestion d'un clique sur la vidéo (passe en fullscreen , puis play-pause). Réinit. d'une booléenne entre chaque projet, pas testé si 2 vidéos dans un projet...
-  - gestion des couleurs du site dans le fichier config.yaml
+  - ajout de la gestion des couleurs du site,dans le premiere partie de `config.yaml`
   - il suffit de donner le `.mov` dans le `config.yaml`, le script ajoute les autres formats (ogv, webm) dans \<video> (il faut les autres formats, ne crée rien)
   
   
