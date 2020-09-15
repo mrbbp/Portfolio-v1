@@ -1,17 +1,72 @@
 #yaml
 
-images:
+# NE RIEN MODIFIER ICI POUR COMMENCER
+# CONFIGURATION DU SITE
+conf:
+  # dossier pour les medias
+  - medias: ./medias/
+  - css :
+    # couleur des filets
+    - couleur-structure: '#444'
+    # couleur texte des tags
+    - couleur-tag: '#444'
+    # couleur de fond des images (home)
+    - couleur-fond-fig: rgba(50,50,50,.8) #'#444'
+    # couleur de fond du site
+    - couleur-fond-app: '#efefef'
+    # fond des images en grand
+    # peut être couleur ou img (css: background:)
+    - fond-medias: white
+    #- fond-medias: url(../img/motif2.png)
+    # affichage des images en bckgrnd : contain (100% hauteur) ou cover (100% largeur)
+    - images: contain
+    # couleur de fond des boutons nav images
+    - couleur-fond-hover: black #rgba(255,255,255,1)
+    - couleur-text-hover: '#ddd'
+    # couleur du texte à gauche (home)
+    - couleur-textes: '#444'
+    # couleur <h4><a> (num tél de la démo)
+    - coul-lienH4: magenta
+    # espace entre les images (home)
+    - gap-images: 1rem
+  # --gap-images:  1px
+    - marge-images: calc(var(--gap-images) * 2)
+# FIN CONFIGURATION DU SITE
+
+# LA LISTES DES MEDIAS DE VOTRE SITE
+medias:
+  - titre: vidéo Justine
+    #object-fit géré sur les vidéos
+    objectFit: contain
+    urls:
+      - slanted.jpg
+      - justine.mp4
+      #- http://vimeo.com/35545566
+    annee: 2019
+    # la première ligne ()+ |) permet de préciser que la suite continet des retours à la ligne qu'il faut conserver
+    commentaire: |
+      long texte
+      avec de retours chariot
+      et des lignes vides
+    tags: Design
   - titre: la leçon de piano
     urls:
-      - img1.jpg
-      - img3.jpg
+      - proportions_vinci.jpg
+      - slanted.jpg
+      - 110506.mp4
+    # object-fit des images (vue projet) : cover ou contain (par défaut)
+    # ajuste la taille de l'image sur la largeur (cover) ou la hauteur (contain) - dépend des images
+    # valable pour toutes les images du projet
+    #objectFit: cover
     annee: 2019
+    # la première ligne ()+ |) permet de préciser que la suite continet des retours à la ligne qu'il faut conserver
     commentaire: |
       long texte
       avec de retours chariot
       et des lignes vides
     tags: Design
   - titre: la mère et le chien
+    objectFit: cover
     urls:
       - img2.jpg
       - img4.jpg
@@ -23,6 +78,7 @@ images:
       avec retour à la ligne
       et encore un autre pour etre sûr
       que ça passe correctement.
+      Et encore une pour tester le dépassement de texte sur la hauteur de ma mère & mon cheval boiteux, mes épillepsies synchrones et mon brâme le matin dans les bois.
   - titre: le cheval fou d'amour
     url: img3.jpg
     tags: lematin
@@ -53,7 +109,7 @@ images:
       et encore un autre pour etre sûr
       que ça passe correctement.
   - titre: le carpaud amoureux
-    url: img6.jpg
+    url: img5.jpg
     tags: sucreàlail
     commentaire: la belle grosse images
       qui fout la trouille
