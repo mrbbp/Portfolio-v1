@@ -1,5 +1,5 @@
 # Portfolio-v1.2
-_A small portfolio (only picture) with yaml formated file for content description_
+_A small portfolio (~~only picture~~ pictures + videos) with yaml formated file for content description_
 
 Un simple portfolio, html + css + js + fichier yaml de config.
 Design frugal (pas de base de donnée MySQL), un simple fichier yaml pour structurer le contenu.
@@ -27,7 +27,7 @@ Le design est un peu grossier, il utilise par défaut la police *Source Sans Var
   - si les légendes (home) dépassent, il n'y a plus d'acenceur pour scroller `overflow:scroll` ... **bug sous win: montre des acenceurs vides**
   - gestion d'un clique sur la vidéo (passe en fullscreen , puis play-pause). Réinit. d'une booléenne entre chaque projet, pas testé si 2 vidéos dans un projet...
   - gestion des couleurs du site dans le fichier config.yaml
-  - 
+  - il suffit de donner le `.mov` dans le `config.yaml`, le script ajoute les autres formats (ogv, webm) dans \<video> (il faut les autres formats, ne crée rien)
   
   
 exemple de config.yaml
