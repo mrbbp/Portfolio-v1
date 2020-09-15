@@ -1,4 +1,4 @@
-# portfolio-v1
+# Portfolio-v1.2
 _A small portfolio (only picture) with yaml formated file for content description_
 
 Un simple portfolio, html + css + js + fichier yaml de config.
