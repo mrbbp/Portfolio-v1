@@ -44,6 +44,25 @@ images:
   - ajout d'une gestion de l'`object-fit` sur les medias (images et vidéos) - calage sur la largeur ou la hauteur du média (1 objectfit / projet)
   - si les légendes (home) dépassent, il n'y a plus d'acenceur pour scroller `overflow:scroll` ... bug sous win: montre des acenceurs vides
   - gestion d'un clique sur la vidéo (passe en fullscreen , puis play-pause). Réinit. d'une booléenne entre chaque projet, pas testé si 2 vidéos dans un projet...
+  - gestion des couleurs du site dans le fichier config.yaml
   
+  nouveau
+  ```yaml
+  medias:
+  - titre: vidéo
+    #object-fit géré sur les vidéos et images
+    objectFit: contain
+    urls:
+      - poster.jpg
+      - video.mp4
+    annee: 2019
+    # la première ligne ()+ |) permet de préciser que la suite contient des retours à la ligne qu'il faut conserver
+    commentaire: |
+      long texte
+      avec de retours chariot
+      et des lignes vides
+    tags: Design
+ ```
+
 ## TODO:
 - supprimer la prévisue lors de la consultation du projet quand il y a une vidéo
