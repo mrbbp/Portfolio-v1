@@ -89,7 +89,8 @@ fetch('./config.yaml')
       art.dataset.lien = media.lien;
     }
     
-    // corrige un bug d'affichage sur Windows™ (les ascenceurs apparaissent même quand inutile)
+    // corrige un bug d'affichage sur Windows™ (les ascenseurs apparaissent même quand inutiles)
+    // à vérifier sur plusieurs machines win
     if (navigator.appVersion.indexOf("Win") != -1) {
       console.log("sous windows corrige overflow");
       figCap.querySelector("p").style.overflow = "unset";
