@@ -22,6 +22,7 @@
   màj 200916
     - gestion des tags vides (config.yaml) projet sans tag
     - détection de l'obsolescence de url(dans config.yaml) - à supprimer ?
+    - correction sensibilité à la casse des extensions de fichiers medias
 */
 const listeTagsBrute = [];
 let listeTagActifs = [];
