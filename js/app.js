@@ -251,7 +251,7 @@ const afficheProjet = (e) => {
   let compteur = 0;
   if (listeRefs[e.dataset.index].urls) {
     for (media of listeRefs[e.dataset.index].urls) {
-      // utilitaire
+      // utilitaire ajout des sources vidéos
       function addSrc2V(element, src, type) {
           const source = document.createElement('source');
           source.src = src;
@@ -267,7 +267,7 @@ const afficheProjet = (e) => {
       const extension = media.split(".")[1];
       console.log(media);
       // si c'est une image
-      if (extension.match(/jpg|gif|jpeg|png|webp/g)){
+      if (extension.toLowerCase().match(/jpg|gif|jpeg|png|webp/g)){
         art.dataset.index = compteur;
         listeImagesProjetEncours.push(media);
         // ajoute les propriétés de l'image
@@ -289,7 +289,7 @@ const afficheProjet = (e) => {
         art.appendChild(fig);
         fig.appendChild(image);
         compteur++;
-      } else if (extension.match(/mp4|ogv|webm/g)) {
+      } else if (extension.toLowerCase().match(/mp4|ogv|webm/g)) {
         // c'est une vidéo
         listeImagesProjetEncours.push(media);
 
