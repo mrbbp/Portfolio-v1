@@ -10,7 +10,7 @@
     - gestion de l'object-fit des images (visu projet)
       config.yaml: objectFit: cover (contain par defaut)
   maj 200915
-    - suppression de overflow:scroll sur "figcation p" (pb affichage ascenceurs sous win)
+    - modification de overflow:scroll sur "figcation p" (pb affichage ascenceurs sous win : overflow : unset
     - object-fit pour les vidéos
     - ajout classe .vcontain
     --> quand video verticale le player dépasse la fenêtre
@@ -59,8 +59,8 @@ fetch('./config.yaml')
   for (media of liste.medias) {
     listeRefs.push(media);
     // si existe ajoute les tags à la liste
-    if (media.tags) {
-      //console.log(media.tags, typeof(media.tags));
+    if (media.tags && media.tags != null) {
+      console.log("tags:",media.tags, typeof(media.tags));
       const listeTagImg = media.tags.split(',');
       for (const i of listeTagImg) {
         listeTagsBrute.push(i.trim());
@@ -72,9 +72,12 @@ fetch('./config.yaml')
     const image = document.createElement("img");
     const figCap = document.createElement("figcaption");
     // ajoute les tags (sans espace) dans data-tags sur l'article
-    art.dataset.tags = media.tags.replace(/\s/gm, '');
+    if (media.tags && media.tags != null) {
+      art.dataset.tags = media.tags.replace(/\s/gm, '');
+    }
     art.dataset.index = index;
     figCap.innerHTML = "<h3><strong>"+media.titre+"</strong> - "+media.annee+"</h3>";
+    //figCap.innerHTML += "<h4>"+media.annee+"</h4>";
     // remplace les \n par <br>
     figCap.innerHTML += "<p>"+media.commentaire.replace(/\n/gm,"<br>")+"</p>";
     // ajoute les propriétés de l'image
@@ -88,14 +91,13 @@ fetch('./config.yaml')
     if (media.lien) {
       art.dataset.lien = media.lien;
     }
-    
     // corrige un bug d'affichage sur Windows™ (les ascenseurs apparaissent même quand inutiles)
     // à vérifier sur plusieurs machines win
     if (navigator.appVersion.indexOf("Win") != -1) {
       console.log("sous windows corrige overflow");
       figCap.querySelector("p").style.overflow = "unset";
     }
-    
+
     image.title = media.titre;
     image.classList.add("cover");
     // ajoute les élements au DOM
@@ -166,7 +168,9 @@ fetch('./config.yaml')
       bListe = true;
       for (const tag of listeObjTags) {
         tag.classList.remove("OFF");
-        listeTagActifs.push(tag.dataset.tag);
+        if (tag.dataset.tag!= undefined) {
+          listeTagActifs.push(tag.dataset.tag);
+        }
       }
       bouton.innerHTML = "aucun";
     }
@@ -187,17 +191,19 @@ const majVignettes = () => {
   listeArticles = document.querySelectorAll("section.images article");
   for (const artcl of listeArticles) {
     let compteur = 0;
-    const listeTagArticle = artcl.dataset.tags.split(',');
-    for (const t of listeTagActifs) {
-      const found = listeTagActifs.some((t) => listeTagArticle.includes(t));
-      if (found) {
-        compteur++;
+    if (artcl.dataset.tags != undefined) {
+      const listeTagArticle = artcl.dataset.tags.split(',');
+      for (const t of listeTagActifs) {
+        const found = listeTagActifs.some((t) => listeTagArticle.includes(t));
+        if (found) {
+          compteur++;
+        }
       }
-    }
-    if (compteur>0) {
-      artcl.style.display = "block";
-    } else {
-      artcl.style.display = "none";
+      if (compteur>0) {
+        artcl.style.display = "block";
+      } else {
+        artcl.style.display = "none";
+      }
     }
   }
 };
