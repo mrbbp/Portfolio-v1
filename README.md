@@ -1,18 +1,21 @@
 # Portfolio-v1.2
 _A small portfolio (~~only picture~~ pictures + videos) with yaml formated file for content description_
 
-Un simple portfolio, html + css + js + fichier yaml de config.
+Un simple portfolio, html + css + js + fichier yaml de config (pour desktop).
 Design frugal (pas de base de donnée MySQL), un simple fichier yaml pour structurer le contenu.
-Il suffit de compléter le fichier `config.yaml` pour ajouter des contenus (et d'ajouter les images sur le serveur).
+Il suffit de compléter le fichier `config.yaml` pour ajouter des contenus (et d'ajouter les medias sur le serveur).
 
-C'est un ~~première~~ seconde ébauche d'un portfolio pour les étudiants du DNMADe Design graphique en mouvement du lycée Bréquigny de Rennes. (url encours)
+C'est un ~~première~~ seconde ébauche d'un portfolio destiné  aux étudiants du DNMADe Design graphique en mouvement du lycée Bréquigny de Rennes. (url encours)
 
-- Pour le moment, le script attend une ou des images, créée des `<article><figure><img></figure><figcaption></figcaption></article>` à partir de `urls` ou `url` (ou `<video>`
+- Pour le moment, le script attend une ou des images, créée des `<article><figure><img></figure><figcaption></figcaption></article>` à partir de `urls` ou `url` (ou créée un objet `<video>`)
+
 - Une barre contenant tous les tags (contenus dans `config.yaml`) est générée et permet de montrer/cacher certains projets (simple disparition dans la colonne de droite)
 
 - Lorsque qu'un projet est cliqué, une "light-box" permet de faire défiler les images du projet en fondu enchainé et de retourner à la sélection des projets.
 
 - La première partie du fichier css/style.css contient qlq variables css pour modifier les couleurs du texte et l'écart entre les images (gouttière).
+
+- le nombre de projets est "illimité"...
 
 - Le script utilise le parser js-yaml https://github.com/nodeca/js-yaml pour structurer les infos.
 
@@ -54,3 +57,4 @@ images:
 
 ## TODO:
 - supprimer la prévisue lors de la consultation du projet quand il y a une vidéo
+- gérer la lisibilité sur smartphone
