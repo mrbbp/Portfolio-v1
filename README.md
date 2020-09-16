@@ -19,7 +19,7 @@ C'est un ~~première~~ seconde ébauche d'un portfolio destiné  aux étudiants 
 
 - Le script utilise le parser js-yaml https://github.com/nodeca/js-yaml pour structurer les infos.
 
-Le design est un peu grossier, il utilise par défaut la police *Source Sans Variable*, dessinée par Adobe® system.
+- Par défaut,l'app utilise la police *Source Sans Variable*, dessinée par Adobe® system disponible [ici](https://github.com/adobe-fonts/source-sans-pro/releases)
 
 
 ## màj 200915:
