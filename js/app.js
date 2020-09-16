@@ -88,7 +88,13 @@ fetch('./config.yaml')
     if (media.lien) {
       art.dataset.lien = media.lien;
     }
-
+    
+    // corrige un bug d'affichage sur Windows™ (les ascenceurs apparaissent même quand inutile)
+    if (navigator.appVersion.indexOf("Win") != -1) {
+      console.log("sous windows corrige overflow");
+      figCap.querySelector("p").style.overflow = "unset";
+    }
+    
     image.title = media.titre;
     image.classList.add("cover");
     // ajoute les élements au DOM
