@@ -36,8 +36,6 @@ fetch('./config.yaml')
   // interprete le fichier yaml en obj js
   const liste = jsyaml.load( yamlResponse );
   let index = 0;
-  //console.log(yamlResponse);
-  // document.documentElement.style.setProperty('--your-variable', '#YOURCOLOR');
 
   /* lecture des parametres de configuration */
   for (const conf in liste.conf) {
