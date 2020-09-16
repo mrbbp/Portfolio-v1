@@ -2,7 +2,7 @@
   maj 310820
     - ajout d'un bouton dans les tags pour tout (dé)selectionner
     - support des vidéos (on référence seulement une video mp4 ou ogv  ou webm, ajoute les autres sources avec le meme nom de fichier)
-      au minimum 2 fichiers : une image (en prmeier sert de prévisu) , une vidéo
+      au minimum 2 fichiers : une image (en premier sert de prévisu) , une vidéo
       config.yaml :
         urls:
           - slanted.jpg
@@ -13,12 +13,15 @@
     - modification de overflow:scroll sur "figcation p" (pb affichage ascenceurs sous win : overflow : unset
     - object-fit pour les vidéos
     - ajout classe .vcontain
-    --> quand video verticale le player dépasse la fenêtre
+    --> BUG: video verticale: le player dépasse la fenêtre du navigateur (pas de solution)
     - gestion des videos par cliques succéssifs
       - 1: fullScreen
       - 2A: play()
       - 2B: pause()
       - réinit du comportement pour chaque nouveau projet
+  màj 200916
+    - gestion des tags vides (config.yaml) projet sans tag
+    - détection de l'obsolescence de url(dans config.yaml) - à supprimer ?
 */
 const listeTagsBrute = [];
 let listeTagActifs = [];
@@ -214,6 +217,8 @@ const listeImagesProjetEncours = [];
 let nbrArticlesProjetEncours = 0;
 // video en fullScreen?
 let bvFS = false;
+
+/* affichage des projets */
 const afficheProjet = (e) => {
   projetArticleEncours = 0;
   projetEncours = e.dataset.index;
@@ -223,9 +228,6 @@ const afficheProjet = (e) => {
   document.querySelector(".projet").style.left = 0;
   document.querySelector(".projet").style.opacity = 1;
   document.querySelector(".projet").style.visibility = 1;
-  //document.querySelector("#berceau").style.marginLeft = "-100vw";
-  //document.querySelector("#berceau").style.marginTop = 0;
-  //document.querySelector("#berceau").style.height  = "100vh";
   document.querySelector("nav.tag").style.marginTop = "-2rem";
   document.querySelector("nav #p").style.display = "block";
   document.querySelector("nav #n").style.display = "block";
@@ -284,62 +286,65 @@ const afficheProjet = (e) => {
         } else {
           image.classList.add("contain");
         }
-        //image.classList.add("contain");
         // ajoute les élements au DOM
         document.querySelector("section.projet").insertBefore(art,nav);
         art.appendChild(fig);
         fig.appendChild(image);
         compteur++;
       } else if (extension.match(/mp4|ogv|webm/g)) {
+        // c'est une vidéo
         listeImagesProjetEncours.push(media);
 
         art.id = "art_"+compteur;
-        if (compteur >0) {
+        if (compteur>0) {
           art.classList.add("cache");
         }
-        // ajoute le objectfit à la video
+        // ajoute l'object-fit à la video
         if (listeRefs[e.dataset.index].objectFit) {
           video.classList.add("v"+listeRefs[e.dataset.index].objectFit);
-          // video.width =  "80vw";
-          //image.classList.add(listeRefs[e.dataset.index].objectFit);
         } else {
           video.classList.add("vcover");
         }
         // video en boucle
         video.loop = true;
-        // affichage du player
+        // affichage du player, si désactivée, pas de player affiché sauf en fullscreen
         //video.controls = true;
 
-        // c'est une vidéo
         console.log("c'est un fichier vidéo");
+        //ajoute les sources complémentaires (même nom, même emplacement)
         addSrc2V(video, _PATH_MEDIAS+media.split(".")[0]+'.ogv', 'video/ogg');
         addSrc2V(video, _PATH_MEDIAS+media.split(".")[0]+'.webm', 'video/webm');
         addSrc2V(video, _PATH_MEDIAS+media.split(".")[0]+'.mp4', 'video/mp4');
+
         // ajoute les élements au DOM
         document.querySelector("section.projet").insertBefore(art,nav);
         art.appendChild(fig);
         fig.appendChild(video);
 
+        // ajoute l'écouteur de click sur la vidéo
         video.addEventListener("click",(e) => {
           e.preventDefault();
           const video = e.srcElement;
           if (!bvFS) {
+            // passe en fullscreen
             video.requestFullscreen();
             bvFS = true;
           } else  {
+            // bascule play/pause
             if (video.paused) {
               video.play();
             } else {
               video.pause();
             }
           }
-          console.log("click video",e,e.srcElement.exitFullscreen(), e.srcElement);
+          //console.log("click video",e,e.srcElement.exitFullscreen(), e.srcElement);
         });
         compteur++;
       }else {
-        console.log("extension non prise en charge: "+extension);
+        console.log("erreur: extension non prise en charge: "+extension);
       }
     }
+    // si une seule image, cache les boutons de navigation
     if (compteur <= 1) {
       // cache nav images
       document.querySelector("nav #p").style.display = "none";
@@ -350,8 +355,10 @@ const afficheProjet = (e) => {
     // remontre le compteur d'image
     document.querySelector("nav #num").style.display = "block";
   } else {
-    // si une seule image
-    // créée les élements
+    // si une seule image (url)
+    /* cette partie n'a plus de sens, urls ne peut avoir qu'une seule image - obsolète */
+
+    // création des élements pour le DOM
     const art = document.createElement("article");
     const fig = document.createElement("figure");
     const image = document.createElement("img");
@@ -359,7 +366,13 @@ const afficheProjet = (e) => {
     // ajoute les propriétés de l'image
     image.src = _PATH_MEDIAS+listeRefs[e.dataset.index].url;
     image.title = listeRefs[e.dataset.index].titre;
-    image.classList.add("contain");
+    // object-fit du media
+    // aspect ratio image en fonction conf ou par defaut
+    if (listeRefs[e.dataset.index].objectFit && listeRefs[e.dataset.index].objectFit != null) {
+      image.classList.add(listeRefs[e.dataset.index].objectFit);
+    } else {
+      image.classList.add("contain");
+    }
     // ajoute les élements au DOM
     document.querySelector("section.projet").insertBefore(art,nav);
     // cache nav images
@@ -370,26 +383,31 @@ const afficheProjet = (e) => {
     art.appendChild(fig);
     fig.appendChild(image);
   }
+  // fin de la création des élements
   nbrArticlesProjetEncours = compteur;
-  // affiche le num de l'image
+  // affiche le num de l'image encours
   document.querySelector("nav #num").innerHTML = "<strong>"+(projetArticleEncours+1)+"</strong> /  "+nbrArticlesProjetEncours;
 
-  console.log("nbrArticlesProjetEncours",nbrArticlesProjetEncours);
   document.querySelector("section.projet").appendChild(aside);
+  /* debug */
+  //console.log("nbrArticlesProjetEncours",nbrArticlesProjetEncours);
   //console.log("listeRefs[projetEncours].urls: "+listeRefs[projetEncours].urls);
-  console.log("listeImagesProjetEncours: "+listeImagesProjetEncours)
+  //console.log("listeImagesProjetEncours: "+listeImagesProjetEncours)
 };
-// retour
+// FIN affichage projets
+
+/* écouteurs boutons */
+// bouton de retour
 document.querySelector("nav #b").addEventListener("click", () => {
   //document.querySelector("#berceau").style.marginLeft = "0";
   document.querySelector(".projet").style.left = "100vw";
   document.querySelector(".projet").style.opacity = 0;
   document.querySelector(".projet").style.visibility = 0;
   //document.querySelector("#berceau").style.marginTop = "2rem";
-  document.querySelector("#berceau").style.height  = "calc(100vh - 2rem)"
+  document.querySelector("#berceau").style.height  = "calc(100vh - 2rem)";
   document.querySelector("nav.tag").style.marginTop = 0;
 });
-// image suivante
+// bouton image suivante
 document.querySelector("nav #n").addEventListener("click", () => {
   document.querySelector("#art_"+projetArticleEncours%nbrArticlesProjetEncours).classList.add("cache");
   // image suivante
@@ -398,11 +416,13 @@ document.querySelector("nav #n").addEventListener("click", () => {
   document.querySelector("#art_"+projetArticleEncours).classList.remove("cache");
   document.querySelector("nav #num").innerHTML = "<strong>"+(projetArticleEncours+1)+"</strong> /  "+nbrArticlesProjetEncours;
 });
+// bouton image précedente
 document.querySelector("nav #p").addEventListener("click", () => {
   // image precedente
   document.querySelector("#art_"+projetArticleEncours%nbrArticlesProjetEncours).classList.add("cache");
   // image precedente
   projetArticleEncours -= 1;
+  // boucle
   if (projetArticleEncours<0) {projetArticleEncours = nbrArticlesProjetEncours-1}
   document.querySelector("#art_"+projetArticleEncours).classList.remove("cache");
   document.querySelector("nav #num").innerHTML ="<strong>"+(projetArticleEncours+1)+"</strong> /  "+nbrArticlesProjetEncours;
