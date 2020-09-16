@@ -28,8 +28,9 @@ C'est un ~~première~~ seconde ébauche d'un portfolio destiné  aux étudiants 
   - ajout d'une gestion de l'`object-fit` sur les medias (images et vidéos) - calage sur la largeur ou la hauteur du média (1 object-fit / projet)
   - si les légendes (home) dépassent, il n'y a plus d'acenceur pour scroller `overflow:scroll` ... **bug sous win: montre des acenceurs vides**
   - gestion d'un clique sur la vidéo (passe en fullscreen , puis play-pause). Réinit. d'une booléenne entre chaque projet, pas testé si 2 vidéos dans un projet...
-  - ajout de la gestion des couleurs du site,dans le premiere partie de `config.yaml` (remplace les variables dans la css)
-  - il suffit de donner le `.mov` dans le `config.yaml`, le script ajoute les autres formats (ogv, webm) dans \<video> (il faut les autres formats, ne crée rien)
+  - ajout de la gestion des couleurs du site, dans le premiere partie de `config.yaml` (remplace les variables dans la css)
+  - il suffit de réferencer seulement le fichier `.mov` dans le `config.yaml`, le script ajoute les autres formats (ogv, webm) dans \<video> (il faut les autres formats, ne crée rien)
+  - correction erreur en cas de tag: vide (config.yaml)
   
   
 exemple de config.yaml
