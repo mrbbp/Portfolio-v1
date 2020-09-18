@@ -326,7 +326,8 @@ const afficheProjet = (e) => {
           const video = e.srcElement;
           if (!bvFS) {
             // passe en fullscreen
-            video.requestFullscreen();
+            const rfs = video.requestFullscreen || video.webkitRequestFullScreen || video.mozRequestFullScreen || video.msRequestFullscreen;
+            rfs.call(video);
             bvFS = true;
           } else  {
             // bascule play/pause
