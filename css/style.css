@@ -12,6 +12,8 @@
   /* couleur du texte à gauche */
   --couleur-textes: #444;
   --images: contain;
+  --coul-lienH4: magenta;
+  --coul-encre-lienH4: white;
 }
 /* Les typos utilisées que vous pouvez modifier */
 @font-face {
@@ -95,7 +97,7 @@ h1 span {
   background-color: var(--coul-lienH4);
   padding-left: .5rem;
   padding-right: .5rem;
-  color: white;
+  color: var(--coul-encre-lienH4);
   text-decoration: none;
 }
 /* fin des styles de la home*/
