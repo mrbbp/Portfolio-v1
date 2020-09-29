@@ -26,7 +26,8 @@ conf:
     # couleur du texte à gauche (home)
     - couleur-textes: '#444'
     # couleur <h4><a> (num tél de la démo)
-    - coul-lienH4: magenta
+    - coul-fond-lienH4: magenta
+    - coul-lienH4: white
     # espace entre les images (home)
     - gap-images: 1rem
   # --gap-images:  1px
