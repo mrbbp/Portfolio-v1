@@ -12,8 +12,8 @@
   /* couleur du texte à gauche */
   --couleur-textes: #444;
   --images: contain;
-  --coul-lienH4: magenta;
-  --coul-encre-lienH4: white;
+  --coul-fond-lienH4: magenta;
+  --coul-lienH4: white;
 }
 /* Les typos utilisées que vous pouvez modifier */
 @font-face {
@@ -94,10 +94,10 @@ h1 span {
   /* opacity:.6; */
 }
 .texte h4 a {
-  background-color: var(--coul-lienH4);
+  background-color: var(--coul-fond-lienH4);
   padding-left: .5rem;
   padding-right: .5rem;
-  color: var(--coul-encre-lienH4);
+  color: var(--coul-lienH4);
   text-decoration: none;
 }
 /* fin des styles de la home*/
@@ -227,6 +227,7 @@ article figure {
 }
 .images figure figcaption:before {
   content: "•••";
+  /* margin-left: 1rem; */
   display: inline-block;
   padding: 0 .5rem;
   margin-bottom: .25rem;
