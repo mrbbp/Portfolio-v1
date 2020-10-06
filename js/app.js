@@ -23,6 +23,8 @@
     - gestion des tags vides (config.yaml) projet sans tag
     - détection de l'obsolescence de url(dans config.yaml) - à supprimer ?
     - correction sensibilité à la casse des extensions de fichiers medias
+  màj 201006
+    - correction d'erreur si pas de commentaire dans un projet
 */
 const listeTagsBrute = [];
 let listeTagActifs = [];
@@ -79,9 +81,10 @@ fetch('./config.yaml')
     }
     art.dataset.index = index;
     figCap.innerHTML = "<h3><strong>"+media.titre+"</strong> - "+media.annee+"</h3>";
-    //figCap.innerHTML += "<h4>"+media.annee+"</h4>";
-    // remplace les \n par <br>
-    figCap.innerHTML += "<p>"+media.commentaire.replace(/\n/gm,"<br>")+"</p>";
+    if (media.commentaire && media.commentaire!= "") {
+      // remplace les \n par <br>
+      figCap.innerHTML += "<p>"+media.commentaire.replace(/\n/gm,"<br>")+"</p>";
+    }
     // ajoute les propriétés de l'image
 
     if (media.url) { // si "url" existe dans le le fichier yaml
