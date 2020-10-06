@@ -64,7 +64,7 @@ fetch('./config.yaml')
     listeRefs.push(media);
     // si existe ajoute les tags à la liste
     if (media.tags && media.tags != null) {
-      console.log("tags:",media.tags, typeof(media.tags));
+      //console.log("tags:",media.tags, typeof(media.tags));
       const listeTagImg = media.tags.split(',');
       for (const i of listeTagImg) {
         listeTagsBrute.push(i.trim());
@@ -89,7 +89,7 @@ fetch('./config.yaml')
 
     if (media.url) { // si "url" existe dans le le fichier yaml
       image.src = _PATH_MEDIAS+media.url;
-      console.log("seule:",media.url);
+      //console.log("seule:",media.url);
     } else { // sinon utilise "urls"
       image.src = _PATH_MEDIAS+media.urls[0];
     }
@@ -99,7 +99,7 @@ fetch('./config.yaml')
     // corrige un bug d'affichage sur Windows™ (les ascenseurs apparaissent même quand inutiles)
     // à vérifier sur plusieurs machines win
     if (navigator.appVersion.indexOf("Win") != -1) {
-      console.log("sous windows corrige overflow");
+      //console.log("sous windows corrige overflow");
       figCap.querySelector("p").style.overflow = "unset";
     }
 
@@ -191,8 +191,8 @@ fetch('./config.yaml')
 });
 // quand un tag est ajouté ou retiré
 const majVignettes = () => {
-  console.log(listeTagActifs);
-  console.log("mise à jour des images affichables");
+  //console.log(listeTagActifs);
+  //console.log("mise à jour des images affichables");
   listeArticles = document.querySelectorAll("section.images article");
   for (const artcl of listeArticles) {
     let compteur = 0;
@@ -224,7 +224,7 @@ let bvFS = false;
 const afficheProjet = (e) => {
   projetArticleEncours = 0;
   projetEncours = e.dataset.index;
-  console.log("projetEncours: "+projetEncours);
+  //console.log("projetEncours: "+projetEncours);
   // animation et placement des ecrans
   const nav = document.querySelector(".projet nav");
   document.querySelector(".projet").style.left = 0;
@@ -312,7 +312,7 @@ const afficheProjet = (e) => {
         // affichage du player, si désactivée, pas de player affiché sauf en fullscreen
         //video.controls = true;
 
-        console.log("c'est un fichier vidéo");
+        //console.log("c'est un fichier vidéo");
         //ajoute les sources complémentaires (même nom, même emplacement)
         addSrc2V(video, _PATH_MEDIAS+media.split(".")[0]+'.ogv', 'video/ogg');
         addSrc2V(video, _PATH_MEDIAS+media.split(".")[0]+'.webm', 'video/webm');
